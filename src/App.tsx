@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-
+import commaNumber from "comma-number";
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [loanAmount, setLoanAmount] = useState("");
+  useEffect(() => {
+    console.log(loanAmount);
+  }, [loanAmount]);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value.replace(/,/g, "");
+    if (!isNaN(Number(rawValue))) {
+      setLoanAmount(rawValue);
+    }
+  };
   return (
     <>
-      <div>simple mortgage calculator app</div>
+      <input
+        type="text"
+        value={commaNumber(loanAmount)}
+        onChange={(e) => handleInputChange(e)}
+      />
     </>
   );
 }
