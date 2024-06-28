@@ -15,7 +15,7 @@ function App() {
     <>
       <div className="container">
         <div className="input-field-wrapper">
-          <label for="loan-amount">Loan amount</label>
+          <label htmlFor="loan-amount">Loan amount</label>
           <input
             type="text"
             value={commaNumber(loanAmount)}
@@ -27,7 +27,7 @@ function App() {
           $
         </div>
         <div className="input-field-wrapper">
-          <label for="apr">Annual Interest Rate</label>
+          <label htmlFor="apr">Annual Interest Rate</label>
           <input
             type="number"
             value={apr}
@@ -39,7 +39,7 @@ function App() {
           %
         </div>
         <div className="input-field-wrapper">
-          <label for="years">Years Amount</label>
+          <label htmlFor="years">Years Amount</label>
           <input
             type="number"
             value={years}
