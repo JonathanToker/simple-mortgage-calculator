@@ -13,3 +13,19 @@
   align-items: center;
   color: white;
 }
+
+.container {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.input-field-wrapper {
+  display: flex;
+  gap: 10px;
+  font-size: 35px;
+}
+
+.input-field-wrapper > input {
+  font-size: 25px;
+}
