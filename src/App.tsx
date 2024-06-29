@@ -35,6 +35,7 @@ function App() {
   return (
     <>
       <div className="container">
+        <h1>Fixed Mortgage Calculator</h1>
         <div className="input-field-wrapper">
           <label htmlFor="loan-amount">Loan amount</label>
           <input
