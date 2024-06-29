@@ -6,6 +6,8 @@ function App() {
   const [apr, setApr] = useState(4.5);
   const [years, setYears] = useState(15);
   const [monthlyDebtService, setMonthlyDebtService] = useState("");
+  const [overallPayment, setOverallPayment] = useState("");
+  const [totalInterest, setTotalInterest] = useState("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value.replace(/,/g, "");
     if (!isNaN(Number(rawValue))) {
@@ -13,7 +15,7 @@ function App() {
     }
   };
   //M = P(i(1+i)^n)/((1+i)^n - 1)
-  const monthlyPayment = (
+  const calculateAll = (
     amount: number,
     yearlyInterest: number,
     yearsAmount: number
@@ -24,8 +26,11 @@ function App() {
       amount *
       ((monthlyInterest * Math.pow(1 + monthlyInterest, totalNumOfPayments)) /
         (Math.pow(1 + monthlyInterest, totalNumOfPayments) - 1));
-    console.log(monthlyPayment);
-    return monthlyPayment;
+    const finalPayment = monthlyPayment * totalNumOfPayments;
+    const overallInterest = finalPayment - amount;
+    setMonthlyDebtService(monthlyPayment.toFixed(2));
+    setOverallPayment(finalPayment.toFixed(2));
+    setTotalInterest(overallInterest.toFixed(2));
   };
   return (
     <>
@@ -65,19 +70,29 @@ function App() {
             onChange={(e) => setYears(Number(e.target.value))}
           />
         </div>
-        <button
-          onClick={() =>
-            setMonthlyDebtService(
-              monthlyPayment(parseInt(loanAmount), apr, years).toFixed(2)
-            )
-          }
-        >
+        <button onClick={() => calculateAll(parseInt(loanAmount), apr, years)}>
           submit
         </button>
         {monthlyDebtService ? (
           <div className="monthly-payment">
             <span className="underline pr-2">Monthly payment:</span>
             {commaNumber(monthlyDebtService)}$
+          </div>
+        ) : (
+          ""
+        )}
+        {totalInterest ? (
+          <div className="monthly-payment">
+            <span className="underline pr-2">Total Payment Amount:</span>
+            {commaNumber(overallPayment)}$
+          </div>
+        ) : (
+          ""
+        )}
+        {overallPayment ? (
+          <div className="monthly-payment">
+            <span className="underline pr-2">Total Interest:</span>
+            {commaNumber(totalInterest)}$
           </div>
         ) : (
           ""
