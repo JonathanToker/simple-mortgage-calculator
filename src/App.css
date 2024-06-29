@@ -24,8 +24,21 @@
   display: flex;
   gap: 10px;
   font-size: 35px;
+  flex-wrap: wrap;
 }
 
 .input-field-wrapper > input {
   font-size: 25px;
+}
+
+.monthly-payment {
+  font-size: 25px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.pr-2 {
+  padding-right: 0.5em;
 }
